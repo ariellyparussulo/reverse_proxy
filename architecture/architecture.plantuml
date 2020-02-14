@@ -1,0 +1,7 @@
+@startuml architecture
+
+Main->BuildParser: calls build to validate sintax
+Build->MainParser: validate main node
+Build->ChildNodeParser: validate another nodes
+
+@enduml
