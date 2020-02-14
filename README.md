@@ -1,5 +1,18 @@
 # Basic Reverse Proxy in Python
 
+## Requirements
+```
+sudo apt install -y python3-pip python3-venv
+```
+
+## VirtualEnv
+```
+python3.6 -m venv env
+source env/bin/activate
+<WORK ON THE PROJECT>
+deactivate
+```
+
 ## Step-to-Step
 
 1. read file as a parameter.
