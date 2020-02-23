@@ -1,0 +1,10 @@
+main:
+  port: 80
+  redirect-to-https: false
+root:
+  redirect: true
+  to: path1
+path1:
+  to: localhost:8080
+path2:
+  to: localhost:8081
