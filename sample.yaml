@@ -1,6 +1,6 @@
 main:
-  port: 80
-  redirect-to-https: false
+  port: 90
+  redirect-to-https: true
 root:
   redirect: true
   to: path1

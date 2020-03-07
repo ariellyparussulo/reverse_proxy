@@ -9,8 +9,8 @@ class GlobalParser:
 
     def parse(self, node, content):
         if (node == 'main'):
-            mainParser.MainParser.parse(content)
+            mainParser.MainParser.parse(node, content)
         elif (node == 'root'):
-            rootParser.RootParser.parse(content)
+            rootParser.RootParser.parse(node, content)
         else:
-            propertiesParser.PropertiesParser.parse(content)
+            propertiesParser.PropertiesParser.parse(node, content)
