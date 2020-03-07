@@ -1,19 +1,19 @@
+"""
+This program was created to run a reverse proxy.
+"""
+
 import sys
 import yaml
-from parsers import globalParser
+from parsers import global_parser
 
-global configFile
-
-if len(sys.argv) is not 2:
+if len(sys.argv) != 2:
     print('Please, pass the configuration file of this server.')
     sys.exit(0)
 
-configFile = sys.argv[1]
+YAML_FILE = sys.argv[1]
 
-with open(configFile) as f:
-    configFile = yaml.load(f, Loader=yaml.FullLoader)
+with open(YAML_FILE) as f:
+    YAML_FILE = yaml.load(f, Loader=yaml.FullLoader)
 
-for configNode in configFile:
-    globalParser.GlobalParser().parse(configNode, configFile[configNode])
-    print(configFile[configNode])
-
+for config_node in YAML_FILE:
+    global_parser.GlobalParser().parse(config_node, YAML_FILE[config_node])
