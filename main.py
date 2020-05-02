@@ -30,6 +30,6 @@ skt.bind(server_address)
 skt.listen()
 while True:
     conn, addr = skt.accept()
-    print ('Client connected: ' + addr[0])
+    print (addr[0] + ' connected!')
 
 skt.close()
