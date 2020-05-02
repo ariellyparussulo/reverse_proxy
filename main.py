@@ -24,10 +24,10 @@ for config_node in YAML_FILE:
         PORT = YAML_FILE[config_node]['port']
     global_parser.GlobalParser().parse(config_node, YAML_FILE[config_node])
 
+server_address = (HOST, PORT)
 skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-skt.bind((HOST, PORT))
+skt.bind(server_address)
 skt.listen()
-
 while True:
     conn, addr = skt.accept()
     print ('Client connected: ' + addr[0])
