@@ -25,7 +25,7 @@ deactivate
     
 ```yaml
 main: # mandatory
-  port: 80
+  port: 9000
   redirect-to-https: boolean
 root: # mandatory (will be /)
   redirect: boolean
