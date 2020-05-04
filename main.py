@@ -3,18 +3,16 @@ This program was created to run a reverse proxy.
 """
 
 import sys
+from http.server import HTTPServer
 import yaml
-import socket
-import sys
 from parsers import global_parser
+from handlers import http_server
 
 if len(sys.argv) != 2:
     print('Please, pass the configuration file of this server.')
     sys.exit(0)
 
 YAML_FILE = sys.argv[1]
-HOST = ''
-PORT = None
 
 with open(YAML_FILE) as f:
     YAML_FILE = yaml.load(f, Loader=yaml.FullLoader)
@@ -24,12 +22,16 @@ for config_node in YAML_FILE:
         PORT = YAML_FILE[config_node]['port']
     global_parser.GlobalParser().parse(config_node, YAML_FILE[config_node])
 
-server_address = (HOST, PORT)
-skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-skt.bind(server_address)
-skt.listen()
-while True:
-    conn, addr = skt.accept()
-    print (addr[0] + ' connected!')
+hostname = YAML_FILE['main']['hostname']
+port = YAML_FILE['main']['port']
 
-skt.close()
+client_address = (hostname, port)
+reverse_proxy = http_server.ReverseProxy(YAML_FILE)
+
+httpd = HTTPServer(client_address, reverse_proxy)
+
+try:
+    print('Serving in ', port)
+    httpd.serve_forever()
+except RuntimeError:
+    httpd.shutdown()

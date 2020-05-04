@@ -9,5 +9,6 @@ class MainParser:
         """
         calls check_property method to validate main nodes types and whether they are mandatory
         """
-        return (utils.Utils.check_property(node, content, "port", int, True)
-                and utils.Utils.check_property(node, content, "redirect-to-https", bool, True))
+        return (utils.Utils.check_property(node, content, "port", int, True) and
+                utils.Utils.check_property(node, content, "hostname", str, True) and
+                utils.Utils.check_property(node, content, "redirect-to-https", bool, True))
